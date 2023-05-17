@@ -25,8 +25,8 @@ public class FirstTask {
 
 
         System.out.println(Arrays.toString(numbers));
-        int wh;//Variable where I store  changeable values
-        int srez; //Variable to identify
+        int wh;//fol
+        int srez;
         for (int i = indexOfMinElement+1; i < (indexOfMaxElement/2)+indexOfMinElement; i++) {
 
             srez = indexOfMaxElement-i;
