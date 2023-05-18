@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class FirstTask {
 
     public static void main(String[] args) {
-        int[] numbers = {1, 2, 3, 10, -5, -1, 2 ,0, -2,1, -25, 5, 1, 2, 3};
+        int[] numbers = {};
 
         int minElement = numbers[0];
         int maxElement = numbers[0];
@@ -33,6 +33,7 @@ public class FirstTask {
             int[] slice = getSliceOfArray(numbers, start + 1, end);
 
             slice = reverse(slice);
+            System.out.println(Arrays.toString(slice));
 
             System.out.println(Arrays.toString(numbers));
             insertSliceOfArray(numbers, slice, start + 1);
