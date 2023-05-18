@@ -3,8 +3,9 @@ package org.example;
 import java.util.Arrays;
 
 public class FirstTask {
+
     public static void main(String[] args) {
-        int[] numbers = {1, 2, 3, -5, -5, -1, 0, 1, 5, 5, 1, 2, 3};
+        int[] numbers = {1, 2, 3, 10, -5, -1, 2 ,0, -2,1, -25, 5, 1, 2, 3};
 
         int minElement = numbers[0];
         int maxElement = numbers[0];
@@ -22,22 +23,49 @@ public class FirstTask {
                 indexOfMaxElement = i;
             }
         }
+        int start = 0;
+        int end = 0;
 
+        if(indexOfMaxElement<indexOfMinElement){start = indexOfMaxElement; end = indexOfMinElement;}
+        if(indexOfMaxElement>indexOfMinElement){start = indexOfMinElement; end = indexOfMaxElement;}
 
-        System.out.println(Arrays.toString(numbers));
-        int wh;//fol
-        int srez;
-        for (int i = indexOfMinElement+1; i < (indexOfMaxElement/2)+indexOfMinElement; i++) {
+        if(start!=end) {
+            int[] slice = getSliceOfArray(numbers, start + 1, end);
 
-            srez = indexOfMaxElement-i;
-            wh = numbers[indexOfMinElement+srez];
-            numbers[indexOfMinElement+srez] = numbers[i];
-            numbers[i] = wh;
+            slice = reverse(slice);
 
+            System.out.println(Arrays.toString(numbers));
+            insertSliceOfArray(numbers, slice, start + 1);
+            System.out.println(Arrays.toString(numbers));
+        }
+    }
 
+    public static int[]   reverse(int[] array){
+        int[] tempArray = new int[array.length];
+        for (int i = 0; i < array.length; i++) {
+
+            tempArray[i] = array[array.length-i-1];
+        }
+        return tempArray;
+
+    }
+
+    public static int[] getSliceOfArray(int[] arr, int start, int end)
+    {
+
+        int[] slice = new int[end - start];
+
+        for (int i = 0; i < slice.length; i++) {
+            slice[i] = arr[start + i];
         }
 
-
-        System.out.println(Arrays.toString(numbers));
+        return slice;
     }
-}
+
+    public static void insertSliceOfArray(int[] arr,int[] slice, int start)
+    {
+        for (int i = 0; i < slice.length; i++) {
+            arr[start + i] = slice[i];
+        }
+
+    }}
