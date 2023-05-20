@@ -33,6 +33,11 @@ public abstract class Fighter {
         opponent.missPunch(getPunches().get(getListOfPunches().get(i-1)));
     }
 
+    public void autoPunch( ){
+        int punch = rand.nextInt(getListOfPunches().size());
+        opponent.missPunch(getPunches().get(getListOfPunches().get(punch)));
+    }
+
     public void missPunch(int damage){
         System.out.println(this.getName() + ": I was hit; Damage is: "+ damage + this.getCoolPhrase());
         this.setHealth(getHealth() - damage);

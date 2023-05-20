@@ -14,20 +14,23 @@ import static org.example.thirdTask.utils.FighterValidator.checkFighter;
 
 public class Arena {
     static Scanner in = new Scanner(System.in);
-    static Fighter currentActor =null;
-    static Random rand = new Random();
+
+    static Fighter chosenFighter =null;
+
+    static Fighter autoFighter =null;
+
 
     public static void main(String[] args) throws FighterException {
         Joker joker = new Joker();
         Batman batman = new Batman();
 
-        Map<String,Integer> onePunches = new HashMap<>();
-        onePunches.put("BasePunch", 30);
-        onePunches.put("CoolPunch", 60);
-        onePunches.put("PowerPunch", 90);
+        Map<String,Integer> punches = new HashMap<>();
+        punches.put("BasePunch", 30);
+        punches.put("CoolPunch", 60);
+        punches.put("PowerPunch", 90);
 
-        joker.learnPunches(onePunches);
-        batman.learnPunches(onePunches);
+        joker.learnPunches(punches);
+        batman.learnPunches(punches);
 
         joker.setOpponent(batman);
         batman.setOpponent(joker);
@@ -40,14 +43,29 @@ public class Arena {
     public static void startBattle(Fighter one, Fighter two) throws FighterException {
         checkFighter(one);
         checkFighter(two);
+        choseFighters(one, two);
 
 
-        while (one.getHealth() > 0 && two.getHealth()> 0)
+        while (true)
         {
-            currentActor =  choseActor(one,two);
-            System.out.println("Punches: " + currentActor.getListOfPunches() + "Choose a number of punch for:" + currentActor.getName()+ "\n");
-            int i = in.nextInt();
-            currentActor.makeAPunch(i);
+            System.out.println( "List of punches" + chosenFighter.getListOfPunches());
+            System.out.println("Chose a number of punch: " + "\n");
+            int punch = in.nextInt();
+            if(punch > chosenFighter.getListOfPunches().size() -1 && punch<0){
+                System.out.println("Choose proper value fo punch");
+                continue;
+            }
+
+            else {
+                chosenFighter.makeAPunch(punch);
+            }
+
+            if(chosenFighter.getHealth() < 0 || autoFighter.getHealth() < 0){break;}
+
+            System.out.println("\n" + "Que of: " + autoFighter.getName());
+            autoFighter.autoPunch();
+
+
         }
         if(one.getHealth() < 0)
         {
@@ -60,10 +78,20 @@ public class Arena {
 
     }
 
-    public static Fighter choseActor(Fighter one, Fighter two){
-        if(rand.nextInt(2) > 0){
-            return one;
+    public static void choseFighters (Fighter one, Fighter two){
+        System.out.println("Fighter one: " + one.getName() + "; Fighter two: " + two.getName());
+
+        int fighter = in.nextInt();
+
+        if(fighter-1 == 0){chosenFighter=one; autoFighter =two;
+            System.out.println("You have chose: " + one.getName());}
+        else if(fighter-1 == 1){chosenFighter=two; autoFighter = one;
+            System.out.println("You have chose: " + two.getName());}
+        else {
+            System.err.println("Chose valid number of fighter");
         }
-        else {return two;}
+
     }
+
+
 }
