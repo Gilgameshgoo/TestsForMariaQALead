@@ -4,24 +4,28 @@ import java.util.Arrays;
 
 public class SecondTask {
     public static void main(String[] args) {
-        // text = "aaabbkk";
-        char[] text = {'a','a','a','b','b','k','k'};
-        char[] word = {'a','b','b','a','a','k','g'};
-        //String word = "abbaakk";
+        String textSt = "abbaakk";
+        String wordSt = "abbaakg";
+        char[] text = textSt.toCharArray();
+        char[] word = wordSt.toCharArray();
 
-        if(text.length>0 && word.length>0){
-            System.out.println("Result: " + checkW(text,word));}
+        if (text.length > 0 && word.length > 0) {
+            System.out.println("Result: " + checkWord(text, word));
+        }
+        else
+        {
+            System.err.println("Make suse you have introduced valid data; Length of text is: "+text.length +", Length of word is: " + word.length);
+        }
 
-    }
-
-    public static boolean checkW(char[] text, char[] word) {
+}
+    public static boolean checkWord(char[] text, char[] word) {
         boolean[] usedLetters = new boolean[text.length];
         fillBoolArray(usedLetters,false);
 
         for(int i = 0; i< word.length; i++){
-            if( !letterIsAccesable(text, usedLetters, word[i]) || !(text.length>= word.length) ){
+            if( !letterIsAccessible(text, usedLetters, word[i]) || !(text.length>= word.length) ){
 
-                System.err.println("Letter: " + word[i] + " Index: " + i);
+                System.err.println("Letter: '" + word[i] +"' Is inaccessible " + " at Index: " + i);
                 return false;
             }
 
@@ -37,7 +41,7 @@ public class SecondTask {
         }
     }
 
-    public static boolean letterIsAccesable(char[] text, boolean[] usedLetters, char letter) {
+    public static boolean letterIsAccessible(char[] text, boolean[] usedLetters, char letter) {
         for (int i = 0; i < text.length; i++) {
             if (text[i] == letter && !usedLetters[i]) {
                 usedLetters[i] = true;
