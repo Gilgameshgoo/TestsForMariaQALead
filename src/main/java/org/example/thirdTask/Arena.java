@@ -46,17 +46,21 @@ public class Arena {
         choseFighters(one, two);
 
 
-        while (true)
+        while (chosenFighter.getHealth() > 0 || autoFighter.getHealth() > 0)
         {
+            System.out.println("Your turn " + "\n");
             System.out.println( "List of punches" + chosenFighter.getListOfPunches());
             System.out.println("Chose a number of punch: " + "\n");
             int punch = in.nextInt();
-            if(punch > chosenFighter.getListOfPunches().size() -1 && punch<0){
+            if(punch > chosenFighter.getListOfPunches().size() || punch<0){
                 System.out.println("Choose proper value fo punch");
                 continue;
             }
 
+
             else {
+                System.out.println(punch);
+                System.out.println(chosenFighter.getListOfPunches().size());
                 chosenFighter.makeAPunch(punch);
             }
 
