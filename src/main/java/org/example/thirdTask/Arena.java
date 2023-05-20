@@ -13,6 +13,7 @@ import java.util.Scanner;
 import static org.example.thirdTask.utils.FighterValidator.checkFighter;
 
 public class Arena {
+    static Scanner in = new Scanner(System.in);
     static Fighter currentActor =null;
     static Random rand = new Random();
 
@@ -39,9 +40,6 @@ public class Arena {
     public static void startBattle(Fighter one, Fighter two) throws FighterException {
         checkFighter(one);
         checkFighter(two);
-        Scanner in = new Scanner(System.in);
-        System.out.print("Input a number: ");
-
 
 
         while (one.getHealth() > 0 && two.getHealth()> 0)
