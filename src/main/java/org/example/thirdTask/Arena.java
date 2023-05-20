@@ -59,8 +59,6 @@ public class Arena {
 
 
             else {
-                System.out.println(punch);
-                System.out.println(chosenFighter.getListOfPunches().size());
                 chosenFighter.makeAPunch(punch);
             }
 
