@@ -3,7 +3,7 @@ package org.example.thirdTask.fighters;
 import java.util.Map;
 
 public class Joker extends  Fighter{
-    private  int health = 1200;
+    private  int health = 130;
     private final String coolPhrase = " ;I thought my life is a tragedy, but it is a comedy";
     private final String name = "Joker";
 

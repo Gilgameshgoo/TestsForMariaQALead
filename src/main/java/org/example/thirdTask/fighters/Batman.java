@@ -3,7 +3,7 @@ package org.example.thirdTask.fighters;
 import java.util.Map;
 
 public class Batman extends Fighter{
-    private  int health = 900;
+    private  int health = 100;
     private final String coolPhrase = " ;I'm not the hero Gotham needs, but the hero it deserves";
     private final String name = "Batman";
 

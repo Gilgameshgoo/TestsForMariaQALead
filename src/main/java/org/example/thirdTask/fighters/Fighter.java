@@ -27,15 +27,10 @@ public abstract class Fighter {
             assert opponent!=null;
         }
     }
-    public void takeAPunch(int damage){
-        if(rand.nextInt(2) > 0){
-            missPunch(damage);
-        }
-        else {blockPunch(damage);}
-    }
 
-    public void makeAPunch(){
-        opponent.takeAPunch(choseAPunch());
+
+    public void makeAPunch(int i ){
+        opponent.missPunch(getPunches().get(getListOfPunches().get(i-1)));
     }
 
     public void missPunch(int damage){
@@ -44,16 +39,6 @@ public abstract class Fighter {
         System.out.println(this.getName() + ": Remaining health: "+ getHealth() + this.getCoolPhrase());
     }
 
-    public void blockPunch(int Damage){
-        System.out.println(this.getName() + ": Damage was blocked: "+ Damage + this.getCoolPhrase());
-        System.out.println(this.getName() + ": Remaining health: "+ getHealth() + this.getCoolPhrase());
-    }
-
-    public int choseAPunch(){
-        int randomIndex = new Random().nextInt(listOfPunches.size());
-        System.out.println(this.getName() + " hits " +  listOfPunches.get(randomIndex));
-        return punches.get(listOfPunches.get(randomIndex));
-    }
 
     public void learnPunches(Map<String,Integer> punches) throws FighterException {
         if (punches==null  || !checkPunches(punches)){
@@ -74,6 +59,10 @@ public abstract class Fighter {
     public abstract String getName();
     public  Map<String,Integer> getPunches(){
         return punches;
+    };
+
+    public  List<String> getListOfPunches(){
+        return listOfPunches;
     };
 
     public abstract void setHealth(int health);
